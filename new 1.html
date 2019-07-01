@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <script language="javascript">
-var money = [];
 var i = 0;
 function AddItem(){
 	var sum	= 0;
@@ -14,48 +13,48 @@ function AddItem(){
 	var cell4 = row.insertCell(3);
 	cell1.innerHTML = item_value;
 	cell2.innerHTML = price_value;
-
   var btn = document.createElement("BUTTON");
   btn.innerHTML = "Delete";
   cell3.appendChild(btn);
 	var btn2 = document.createElement("BUTTON");
   btn2.innerHTML = "Modify";
   cell4.appendChild(btn2);
-
-
   cell3.onclick = function () {
 		 var index =this.parentElement.rowIndex;
          table.deleteRow(index);
 		 sum=0;
 		 ReCal();
 	}
-
   cell4.onclick = function () {
 		if(btn2.innerHTML=='Modify'){
 		 var item_new = document.createElement('input');
 		 var price_new = document.createElement('input');
-     item_new.value=item_value;
-     price_new.value=price_value;
+		item_new.id="new_item";
+		price_new.id="new_price";
+		item_new.value=item_value;
+		price_new.value=price_value;
 		 cell1.innerHTML='';
 		 cell2.innerHTML='';
 		 cell1.appendChild(item_new);
 		 cell2.appendChild(price_new);
 		 btn2.innerHTML = 'Corfirm';
+		 console.log(cell1.innerHTML);
+		 console.log(price_new.value);
 	 }
 	 else {
-    cell1.innerHTML=item_new.value;
-		cell2.innerHTML=price_new.value;
-		btn2.innerHTML = 'Modify';
+		 var item_new_value=document.getElementById("new_item").value;
+		 var price_new_value=document.getElementById("new_price").value;
+		
+		 console.log(cell2.innerHTML);
+		 cell1.innerHTML=item_new_value;
+		 cell2.innerHTML=price_new_value;
+		 btn2.innerHTML = 'Modify';
 	 }
 		 sum=0;
 		 ReCal();
 	}
-
-
-
 	function ReCal(){
 	var total=document.querySelector('#total');
-	money[i++]= price_value;
 	for(var j=1;j<table.rows.length;j++){
 		sum += parseInt(table.rows[j].cells[1].innerHTML,10);
 	}
@@ -92,3 +91,4 @@ function AddItem(){
 	</body>
 
 </html>
+	
